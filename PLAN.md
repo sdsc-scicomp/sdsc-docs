@@ -182,7 +182,7 @@ Lighthouse CI was run on both proof-of-concept sites by the repos' lighthouse.ym
 * Links do not have a discernible name  
 * Table cells in large tables are not associated with headers
 
-**Docusaurus site (**https://zonca.github.io/expanse-docusaurus/**)** \- 5 pages audited; accessibility score 100 on every page, with no accessibility failures. Performance was lower (57 to 70), driven by render-blocking resources, unused CSS/JS, and unsized images. Those are performance issues, not accessibility issues.
+**Docusaurus site (**https://sdsc-scicomp.github.io/expanse-docusaurus/**)** \- 5 pages audited; accessibility score 100 on every page, with no accessibility failures. Performance was lower (57 to 70), driven by render-blocking resources, unused CSS/JS, and unsized images. Those are performance issues, not accessibility issues.
 
 ### Interpretation
 
