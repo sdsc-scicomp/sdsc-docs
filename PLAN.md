@@ -17,7 +17,7 @@ Adopt a modern, git-based documentation operating model for the SDSC HPC user gu
 
 | System | Current documentation | Git/markdown version |
 | :---- | :---- | :---- |
-| Expanse | Static HTML user guide on `sdsc.edu` | Yes, MkDocs proof of concept (`sdsc-scicomp/expanse-docs`, GitHub Pages via GitHub Actions) |
+| Expanse | Static HTML user guide on `sdsc.edu` | Yes, proof of concepts: promoted to Zensical (`sdsc-scicomp/expanse-docs`), Docusaurus (`sdsc-scicomp/expanse-docusaurus`) and Astro Starlight (`sdsc-scicomp/expanse-starlight`), all on GitHub Pages via GitHub Actions |
 | Expanse2 | Not yet (future system) | No |
 | TSCC | Static HTML user guide on `sdsc.edu` | No |
 | Voyager | Static HTML user guide on `sdsc.edu` (needs substantial updates; the system is now in production) | No |
@@ -53,7 +53,7 @@ Adopt a modern, git-based documentation operating model for the SDSC HPC user gu
 
 ### Platform comparison: Docusaurus and Zensical
 
-- **Two production prototypes are being built from the same Expanse content: one with Docusaurus and one with Zensical. Neither platform is preselected. The prototypes should be evaluated against the same acceptance criteria so the final choice is evidence-based.**  
+- **Three prototypes are built from the same Expanse content: Docusaurus (`expanse-docusaurus`), Astro Starlight (`expanse-starlight`) and Zensical (which now replaces MkDocs in `expanse-docs`). Neither platform is preselected. The prototypes should be evaluated against the same acceptance criteria so the final choice is evidence-based.**  
 - Docusaurus is mature and actively maintained, uses Markdown/MDX and a Node/React ecosystem, deploys cleanly to GitHub Pages, and offers official first-class integration with Algolia DocSearch; community-maintained local search options also exist. Its maturity and extension model reduce platform risk, but migration from the existing MkDocs proof of concept is a larger rewrite.  
 - Zensical is the modern successor being developed by the Material for MkDocs team. It has a new architecture, built-in client-side search, substantial compatibility with existing MkDocs/Material projects, and can build the current mkdocs.yml in parallel with MkDocs for a gradual, reversible comparison. It remains alpha software and is still rapidly evolving, so stability, plugin coverage, accessibility, and operational maturity must be validated before production adoption.
 
@@ -167,9 +167,9 @@ The modernization is successful when:
   - Cosmos: `https://www.sdsc.edu/systems/cosmos/user_guide.html`  
 - DESC HPC Training retreat planning doc: `https://docs.google.com/document/d/15c5jp7rDJ8T0_upOmQ1u9zZZhI5SpaHAuZn2MWalGNs/edit`
 
-## Appendix: Lighthouse accessibility audit (September 2026\)
+## Appendix: Lighthouse accessibility audit (September and October 2026\)
 
-Lighthouse CI was run on both proof-of-concept sites by the repos' lighthouse.yml workflows (GitHub Actions artifacts). The full HTML reports are saved in a Drive folder linked at the end of this appendix. These results support the platform recommendation in section 5\.
+Lighthouse CI was run on the proof-of-concept sites by the repos' lighthouse.yml workflows (GitHub Actions artifacts) and locally against the production builds; the dashboard in this repo (`docs/lighthouse/`) hosts the per-page reports. These results support the platform recommendation in section 5\.
 
 ### Results summary
 
@@ -182,14 +182,18 @@ Lighthouse CI was run on both proof-of-concept sites by the repos' lighthouse.ym
 * Links do not have a discernible name  
 * Table cells in large tables are not associated with headers
 
-**Docusaurus site (**https://sdsc-scicomp.github.io/expanse-docusaurus/**)** \- 5 pages audited; accessibility score 100 on every page, with no accessibility failures. Performance was lower (57 to 70), driven by render-blocking resources, unused CSS/JS, and unsized images. Those are performance issues, not accessibility issues.
+(The expanse-docs repo has since been migrated from MkDocs to Zensical; the reports describe the MkDocs build.)
+
+**Docusaurus site (**https://sdsc-scicomp.github.io/expanse-docusaurus/**)** \- 14 pages audited; accessibility score 100 on every page, with no accessibility failures. Performance was lower (57 to 70), driven by render-blocking resources, unused CSS/JS, and unsized images. Those are performance issues, not accessibility issues.
+
+**Astro Starlight site (**https://sdsc-scicomp.github.io/expanse-starlight/**)** \- 14 pages audited (snapshot 2026-10-01); accessibility score 100 on every page, with no accessibility failures, and best practices and SEO at 100 too. Performance ranged from 68 to 92 (better than the Docusaurus prototype on every page). The only accessibility issue found during development was a footer heading that skipped a level; it was fixed and both the repo and local runs now pass the LHCI accessibility assertion (minScore 1).
 
 ### Interpretation
 
-The automated audit confirms the recommendation in section 5: the Docusaurus proof of concept meets WCAG 2.1 AA accessibility out of the box, while the MkDocs Material site fails multiple AA checks on all pages, consistent with that theme's known accessibility gaps and its end-of-life status.
+The automated audits confirm the recommendation in section 5: the Docusaurus and Astro Starlight proofs of concept meet WCAG 2.1 AA accessibility out of the box, while the MkDocs Material site fails multiple AA checks on all pages, consistent with that theme's known accessibility gaps and its end-of-life status.
 
 ### Report files
 
-Full Lighthouse HTML reports (15 for the MkDocs site, 5 for the Docusaurus site) are in the Drive folder:
+Per-page Lighthouse reports for all snapshots are committed in this repo under `docs/lighthouse/`:
 
 Expanse-docs Lighthouse reports: https://drive.google.com/drive/folders/1dYrJ1lin9lIDhMPNh3DtkUnE\_pVEVJTf  

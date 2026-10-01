@@ -6,9 +6,10 @@ Coordination repository for modernizing the SDSC HPC user documentation.
 
 - `PLAN.md` - copy of the planning Google Doc (markdown), the master plan for the effort.
 - `docs/` - static site published on GitHub Pages.
-- `docs/lighthouse/<date>/` - Lighthouse accessibility report snapshots, one folder per capture date. Each dates folder contains the per-page report HTML for the two proof-of-concept sites:
-  - `mkdocs/` - the MkDocs proof of concept (`sdsc-scicomp/expanse-docs`)
+- `docs/lighthouse/<date>/` - Lighthouse report snapshots, one folder per capture date. Each date folder contains the per-page report HTML for the proof-of-concept sites:
+  - `mkdocs/` - the MkDocs proof of concept (`sdsc-scicomp/expanse-docs`, since migrated to Zensical)
   - `docusaurus/` - the Docusaurus proof of concept (`sdsc-scicomp/expanse-docusaurus`)
+  - `starlight/` - the Astro Starlight proof of concept (`sdsc-scicomp/expanse-starlight`)
 
 ## Published site
 
